@@ -1,0 +1,22 @@
+---
+
+# Defaults for Global DNS options
+networkmanager::enable_global_dns: false
+networkmanagerservers: []
+networkmanager::global_searchdomains: []
+networkmanager::global_dns_options: []
+networkmanager::global_conffile: '/etc/NetworkManager/conf.d/dns.conf'
+
+# Defaults for DNS for primary interface
+networkmanager::manage_dns: true
+networkmanager::nameservers: []
+networkmanager::dns_searchdomains: []
+networkmanager::dns_options: []
+
+# Defaults for NetworkManager server
+networkmanager::manage_service: true
+networkmanager::ensure_service: 'running'
+networkmanager::service_name: 'NetworkManager'
+networkmanager::enable_service: true
+networkmanager::restart_service: ~
+

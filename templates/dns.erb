@@ -1,0 +1,9 @@
+[main]
+dns=default
+
+[global-dns]
+searches=<% @global_searchdomains.each do |searchdomain| %><%= searchdomain %>,<% end %><% if @real_dns_options %>
+options=<%= @real_dns_options %><% end %>
+
+[global-dns-domain-*]
+servers=<% @global_nameservers.each do |nameserver| %><%= nameserver %>,<% end %>
