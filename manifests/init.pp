@@ -146,16 +146,13 @@ class networkmanager (
   }
 
   if $enable_global_dns {
-
     if $global_dns_options {
       if is_array($global_dns_options) {
         $real_dns_options = join($global_dns_options, ',')
-      }
-      else {
+      } else {
         $real_dns_options = $global_dns_options
       }
-    }
-    else {
+    } else {
       $real_dns_options = undef
     }
 
@@ -165,24 +162,16 @@ class networkmanager (
       content => template("${module_name}/dns.erb"),
       notify  => Class['networkmanager::service']
     }
-  }
-  else {
-      file { $global_conffile:
-        ensure => absent,
-        notify => Class['networkmanager::service']
-      }
+  } else {
+    file { $global_conffile:
+      ensure => absent,
+      notify => Class['networkmanager::service']
+    }
   }
 
-  class { 'networkmanager::service':
-    ensure       => $ensure_service,
-    service_name => $service_name,
-    enable       => $enable_service,
-    manage       => $manage_service,
-    restart      => $restart_service,
-  }
+  include networkmanager::service
 
   if $manage_dns {
-
     $primary_connection = $facts['networkmanager_primaryconnection']
 
     if $primary_connection {
@@ -192,15 +181,12 @@ class networkmanager (
           dns_options   => $dns_options,
           notify_daemon => $dns_notify_daemon,
       }
-    }
-    else {
+    } else {
       notify { 'Did not found a primary NetworkManager connection.': loglevel => warning }
     }
-
   }
 
   if $connection_dnsoptions {
     create_resources('networkmanager::dns', $connection_dnsoptions)
   }
-
 }
