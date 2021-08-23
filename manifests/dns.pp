@@ -60,7 +60,7 @@ define networkmanager::dns (
   $has_nameservers = $facts['networkmanager_dns'][$_connection]['nameserver'].join(',')
   unless $used_nameservers == $has_nameservers {
     exec { "update nameserver nmcli connection ${_connection}":
-      command => "${nmcli} connection modify ${_connection} ipv4.dns ${used_nameservers}",
+      command => "${nmcli} connection modify \"${_connection}\" ipv4.dns ${used_nameservers}",
     }
     if $notify_daemon {
       Exec["update nameserver nmcli connection ${_connection}"] ~> Class['networkmanager::service']
@@ -71,7 +71,7 @@ define networkmanager::dns (
   $has_searchdomains = $facts['networkmanager_dns'][$_connection]['search'].join(',')
   unless $used_searchdomains == $has_searchdomains {
     exec { "update searchdomains nmcli connection ${_connection}":
-      command => "${nmcli} connection modify ${_connection} ipv4.dns-search '${used_searchdomains}'",
+      command => "${nmcli} connection modify \"${_connection}\" ipv4.dns-search '${used_searchdomains}'",
     }
     if $notify_daemon {
       Exec["update searchdomains nmcli connection ${_connection}"] ~> Class['networkmanager::service']
@@ -89,7 +89,7 @@ define networkmanager::dns (
     $has_options = $facts['networkmanager_dns'][$_connection]['options'].join(',')
     unless $used_options == $has_options {
       exec { "update dns-options nmcli connection ${_connection}":
-        command => "${nmcli} connection modify ${_connection} ipv4.dns-options '${used_options}'",
+        command => "${nmcli} connection modify \"${_connection}\" ipv4.dns-options '${used_options}'",
       }
       if $notify_daemon {
         Exec["update dns-options nmcli connection ${_connection}"] ~> Class['networkmanager::service']

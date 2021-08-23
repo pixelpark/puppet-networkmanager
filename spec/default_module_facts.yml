@@ -1,5 +1,4 @@
 ---
-networkmanager_primaryconnection: 'eth0'
 networkmanager_nmcli_path: '/usr/bin/nmcli'
 
 networkmanager_dns:
