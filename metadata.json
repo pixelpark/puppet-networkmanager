@@ -1,6 +1,6 @@
 {
   "name": "pixelpark-networkmanager",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "pixelpark",
   "summary": "A module to manage the networkmanager connections.",
   "license": "LGPL-3.0-or-later",
