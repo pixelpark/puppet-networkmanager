@@ -26,11 +26,11 @@
 #
 # @api private
 class networkmanager::service (
-  String[1]                             $service_name = 'NetworkManager',
-  Boolean                               $enable       = true,
-  Optional[Variant[Boolean, String[1]]] $ensure       = 'running',
-  Boolean                               $manage       = true,
-  Optional[String[1]]                   $restart      = undef,
+  String[1]                             $service_name = $networkmanager::service_name,
+  Boolean                               $enable       = $networkmanager::enable_service,
+  Optional[Variant[Boolean, String[1]]] $ensure       = $networkmanager::ensure_service,
+  Boolean                               $manage       = $networkmanager::manage_service,
+  Optional[String[1]]                   $restart      = $networkmanager::restart_service,
 ) {
 
   if $manage {
