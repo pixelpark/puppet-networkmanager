@@ -32,9 +32,7 @@ class networkmanager::service (
   Boolean                               $manage       = $networkmanager::manage_service,
   Optional[String[1]]                   $restart      = $networkmanager::restart_service,
 ) {
-
   if $manage {
-
     case $ensure {
       true, false, 'running', 'stopped': {
         $_ensure = $ensure
@@ -54,5 +52,4 @@ class networkmanager::service (
       hasrestart => $hasrestart,
     }
   }
-
 }
