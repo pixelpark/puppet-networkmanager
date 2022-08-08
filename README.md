@@ -3,12 +3,18 @@
 
 ## Table of Contents
 
-1. [Description](#description)
-1. [Setup - The basics of getting started with networkmanager](#setup)
-    * [Setup requirements](#setup-requirements)
-1. [Usage - Configuration options and additional functionality](#usage)
-1. [Limitations - OS compatibility, etc.](#limitations)
-1. [Development - Guide for contributing to the module](#development)
+- [networkmanager](#networkmanager)
+  - [Table of Contents](#table-of-contents)
+  - [Description](#description)
+  - [Setup](#setup)
+    - [Setup Requirements](#setup-requirements)
+  - [Usage](#usage)
+    - [Simple Including the module](#simple-including-the-module)
+    - [Instantiation as a class](#instantiation-as-a-class)
+    - [Setup of hieradata](#setup-of-hieradata)
+      - [Parameters](#parameters)
+  - [Limitations](#limitations)
+  - [Development](#development)
 
 ## Description
 
@@ -26,7 +32,7 @@ of the NetworkManager:
 
 ## Setup
 
-### Setup Requirements 
+### Setup Requirements
 
 This module requires following:
 
@@ -51,7 +57,7 @@ configuration must be done via hieradata.
 include networkmanager
 ```
 
-or 
+or
 
 ```puppet
 contain networkmanager
