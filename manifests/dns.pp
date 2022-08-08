@@ -39,19 +39,21 @@ define networkmanager::dns (
   Optional[String[1]]                         $connection    = undef,
   Boolean                                     $notify_daemon = true,
 ) {
+  assert_private()
+
   unless $facts['networkmanager_nmcli_path'] {
     fail("Did not found NetworkManager command line tool 'nmcli'.")
   }
 
   $nmcli = $facts['networkmanager_nmcli_path']
 
-  if $connection {
-    $_connection = $connection
-  } else {
+  if empty($connection) {
     $_connection = $name
+  } else {
+    $_connection = $connection
   }
 
-  if $nameservers.length() == 1 {
+  if $nameservers.length == 1 {
     notify { "Only one nameserver was given for NetworkManager connection ${_connection}.": loglevel => warning }
   }
 
@@ -69,7 +71,7 @@ define networkmanager::dns (
   }
 
   $used_searchdomains = $searchdomains.join(',')
-  $has_searchdomains = $facts['networkmanager_dns'][$_connection]['search'].join(',')
+  $has_searchdomains  = $facts['networkmanager_dns'][$_connection]['search'].join(',')
 
   unless $used_searchdomains == $has_searchdomains {
     exec { "update searchdomains nmcli connection ${_connection}":

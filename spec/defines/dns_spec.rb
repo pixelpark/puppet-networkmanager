@@ -11,7 +11,7 @@ describe 'networkmanager::dns' do
       dns_options: '',
     }
   end
-  let(:pre_condition) { 'include networkmanager::service' }
+  let(:pre_condition) { 'include networkmanager' }
 
   on_supported_os.each do |os, os_facts|
     context "on #{os}" do
