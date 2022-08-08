@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Facter.add(:networkmanager_dns) do
   setcode do
     connections = Facter.value(:networkmanager_connections)
@@ -13,10 +15,6 @@ Facter.add(:networkmanager_dns) do
       end
     end
 
-    if connections
-      dns
-    else
-      nil
-    end
+    dns if connections
   end
 end

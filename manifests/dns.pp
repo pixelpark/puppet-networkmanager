@@ -35,11 +35,10 @@
 define networkmanager::dns (
   Array[Stdlib::IP::Address::Nosubnet, 1]     $nameservers,
   Array[String[1], 1]                         $searchdomains,
-  Optional[Variant[Array[String[1]], String]] $dns_options,
+  Optional[Variant[Array[String[1]], String]] $dns_options   = undef,
   Optional[String[1]]                         $connection    = undef,
   Boolean                                     $notify_daemon = true,
 ) {
-
   unless $facts['networkmanager_nmcli_path'] {
     fail("Did not found NetworkManager command line tool 'nmcli'.")
   }

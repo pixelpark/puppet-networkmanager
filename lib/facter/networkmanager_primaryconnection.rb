@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 Facter.add(:networkmanager_primaryconnection) do
   setcode do
@@ -7,11 +8,7 @@ Facter.add(:networkmanager_primaryconnection) do
       if device
         cmd = "#{nmcli} -g general.connection d show #{device}"
         Facter::Core::Execution.execute(cmd)
-      else
-        nil
       end
-    else
-      nil
     end
   end
 end
