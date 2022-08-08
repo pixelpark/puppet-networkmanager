@@ -29,7 +29,7 @@ describe 'networkmanager' do
         super().merge(
           manage_dns: true,
           dns_options: ['timeout:3', 'attempts:3', 'use-vc'],
-          dns_notify_daemon: false,
+          dns_notify_daemon: false
         )
       end
 

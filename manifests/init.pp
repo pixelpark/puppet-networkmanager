@@ -139,8 +139,7 @@ class networkmanager (
   Optional[String[1]]                         $restart_service,
   Boolean                                     $dns_notify_daemon     = true,
   Optional[Hash]                              $connection_dnsoptions = undef,
-){
-
+) {
   unless $facts['networkmanager_nmcli_path'] {
     fail("Did not found NetworkManager command line tool 'nmcli'.")
   }
@@ -160,12 +159,12 @@ class networkmanager (
       ensure  => file,
       mode    => '0644',
       content => template("${module_name}/dns.erb"),
-      notify  => Class['networkmanager::service']
+      notify  => Class['networkmanager::service'],
     }
   } else {
     file { $global_conffile:
       ensure => absent,
-      notify => Class['networkmanager::service']
+      notify => Class['networkmanager::service'],
     }
   }
 
@@ -176,10 +175,10 @@ class networkmanager (
 
     if $primary_connection {
       networkmanager::dns { $primary_connection:
-          nameservers   => $nameservers,
-          searchdomains => $dns_searchdomains,
-          dns_options   => $dns_options,
-          notify_daemon => $dns_notify_daemon,
+        nameservers   => $nameservers,
+        searchdomains => $dns_searchdomains,
+        dns_options   => $dns_options,
+        notify_daemon => $dns_notify_daemon,
       }
     } else {
       notify { 'Did not found a primary NetworkManager connection.': loglevel => warning }
