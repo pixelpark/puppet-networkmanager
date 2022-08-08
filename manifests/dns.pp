@@ -39,8 +39,6 @@ define networkmanager::dns (
   Optional[String[1]]                         $connection    = undef,
   Boolean                                     $notify_daemon = true,
 ) {
-  assert_private()
-
   unless $facts['networkmanager_nmcli_path'] {
     fail("Did not found NetworkManager command line tool 'nmcli'.")
   }

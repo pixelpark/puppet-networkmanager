@@ -1,5 +1,4 @@
 ---
-
 # Defaults for Global DNS options
 networkmanager::enable_global_dns: false
 networkmanagerservers: []
@@ -19,4 +18,3 @@ networkmanager::ensure_service: 'running'
 networkmanager::service_name: 'NetworkManager'
 networkmanager::enable_service: true
 networkmanager::restart_service: ~
-
