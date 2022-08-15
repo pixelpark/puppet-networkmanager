@@ -1,7 +1,7 @@
 ---
 # Defaults for Global DNS options
 networkmanager::enable_global_dns: false
-networkmanagerservers: []
+networkmanager::global_nameservers: []
 networkmanager::global_searchdomains: []
 networkmanager::global_dns_options: []
 networkmanager::global_conffile: '/etc/NetworkManager/conf.d/dns.conf'
