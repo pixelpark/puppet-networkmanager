@@ -1,4 +1,3 @@
-#
 # @summary Ensure and restarts NetworkManager Service
 #
 # @example Setting up NetworkManager service

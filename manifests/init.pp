@@ -98,7 +98,7 @@
 # @param manage_service
 #   Whether we want to manage the NetworkManager service.
 #
-# @param service_ensure
+# @param ensure_service
 #   Whether a service should be running. Valid values are 'stopped', 'running', true, false.
 #
 # @param service_name
