@@ -1,6 +1,6 @@
 {
   "name": "pixelpark-networkmanager",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "author": "pixelpark",
   "summary": "A module to manage the networkmanager connections.",
   "license": "LGPL-3.0-or-later",
@@ -46,8 +46,5 @@
       "name": "puppet",
       "version_requirement": ">= 6.0.0 < 8.0.0"
     }
-  ],
-  "pdk-version": "1.18.1",
-  "template-url": "pdk-default#1.18.1",
-  "template-ref": "tags/1.18.1-0-g3d2e75c"
+  ]
 }

@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release [v0.0.5](https://github.com/pixelpark/puppet-networkmanager/tree/v0.0.5) (2022-08-15)
+
+[Full Changelog](https://github.com/pixelpark/puppet-networkmanager/compare/v0.0.4...v0.0.5)
+
+## Fixes
+
+ * Fix wrong varibale name in common.yaml
+ * Fix puppet string errors
+
+## Release [v0.0.4](https://github.com/pixelpark/puppet-networkmanager/tree/v0.0.4) (2022-08-08)
+
+[Full Changelog](https://github.com/pixelpark/puppet-networkmanager/compare/v0.0.3...v0.0.4)
+
+## Changes
+
+ * add github actions
+ * fix spec tests
+ * modulesync 5.3.0
+ * refactor facts
+
 ## Release [v0.0.3](https://github.com/pixelpark/puppet-networkmanager/tree/v0.0.3) (2021-08-23)
 
 [Full Changelog](https://github.com/pixelpark/puppet-networkmanager/compare/v0.0.2...v0.0.3)
