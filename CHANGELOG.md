@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release [v0.0.6](https://github.com/pixelpark/puppet-networkmanager/tree/v0.0.6) (2022-09-14)
+
+[Full Changelog](https://github.com/pixelpark/puppet-networkmanager/compare/v0.0.5...v0.0.6)
+
+## Fixes
+
+ * Fix escaping of connection name inside facts exec
+ 
+## Closes
+
+ * #6
+
 ## Release [v0.0.5](https://github.com/pixelpark/puppet-networkmanager/tree/v0.0.5) (2022-08-15)
 
 [Full Changelog](https://github.com/pixelpark/puppet-networkmanager/compare/v0.0.4...v0.0.5)
