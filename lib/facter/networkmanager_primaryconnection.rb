@@ -6,7 +6,7 @@ Facter.add(:networkmanager_primaryconnection) do
     if nmcli
       device = Facter.value('networking')['primary']
       if device
-        cmd = "#{nmcli} -g general.connection d show #{device}"
+        cmd = "#{nmcli} -g general.connection d show '#{device}'"
         Facter::Core::Execution.execute(cmd)
       end
     end
