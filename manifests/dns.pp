@@ -47,7 +47,7 @@ define networkmanager::dns (
     fail("Did not found NetworkManager command line tool 'nmcli'.")
   }
 
-  $_debug_output = $debug_output ? { undef => $networkmanager::debug_output, default => $debug_output }
+  $_debug_output = $debug_output ? { undef                 => $networkmanager::debug_output, default => $debug_output }
 
   $nmcli = $facts['networkmanager_nmcli_path']
 
@@ -56,12 +56,13 @@ define networkmanager::dns (
   } else {
     $_connection = $connection
   }
+  echo { "NM debug_output for for ${_connection}": message => $_debug_output, loglevel => notice }
 
   if $nameservers.length == 1 {
     notify { "Only one nameserver was given for NetworkManager connection ${_connection}.": loglevel => warning }
   }
 
-  $used_nameservers = $nameservers.join(',')
+  $used_nameservers = $nameservers.unique.join(',')
   $has_nameservers  = $facts['networkmanager_dns'][$_connection]['nameserver'].join(',')
 
   # if $_debug_output {
@@ -79,12 +80,12 @@ define networkmanager::dns (
     }
   }
 
-  $used_searchdomains = $searchdomains.join(',')
+  $used_searchdomains = $searchdomains.unique.join(',')
   $has_searchdomains  = $facts['networkmanager_dns'][$_connection]['search'].join(',')
 
   # if $_debug_output {
     $searchdomains_out = "Used searchdomains: ${used_searchdomains}, has searchdomains: ${has_searchdomains}"
-    echo { "NM searchdomains ${_connection}": message => $searchdomains_out, loglevel => notice }
+    echo { "NM searchdomains for ${_connection}": message => $searchdomains_out, loglevel => notice }
   # }
 
   unless $used_searchdomains == $has_searchdomains {
@@ -99,7 +100,7 @@ define networkmanager::dns (
 
   unless $dns_options == undef {
     if is_array($dns_options) {
-      $used_options = $dns_options.join(',')
+      $used_options = $dns_options.unique.join(',')
     } else {
       $used_options = $dns_options
     }
@@ -108,7 +109,7 @@ define networkmanager::dns (
 
     # if $_debug_output {
       $options_out = "Used options: ${used_options}, has options: ${has_options}"
-      echo { "NM options ${_connection}": message => $options_out, loglevel => notice }
+      echo { "NM options for ${_connection}": message => $options_out, loglevel => notice }
     # }
 
     unless $used_options == $has_options {
