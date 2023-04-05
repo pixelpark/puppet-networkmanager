@@ -64,10 +64,10 @@ define networkmanager::dns (
   $used_nameservers = $nameservers.join(',')
   $has_nameservers  = $facts['networkmanager_dns'][$_connection]['nameserver'].join(',')
 
-  if $_debug_output {
-    $ns_out = "used nameservers: ${used_nameservers}, has nameservers: ${has_nameservers}"
-    echo { 'NM nameservers': message => $ns_out, loglevel => notice }
-  }
+  # if $_debug_output {
+    $ns_out = "Used nameservers: ${used_nameservers}, has nameservers: ${has_nameservers}"
+    echo { "NM nameservers for ${_connection}": message => $ns_out, loglevel => notice }
+  # }
 
   unless $used_nameservers == $has_nameservers {
     exec { "update nameserver nmcli connection ${_connection}":
@@ -82,10 +82,10 @@ define networkmanager::dns (
   $used_searchdomains = $searchdomains.join(',')
   $has_searchdomains  = $facts['networkmanager_dns'][$_connection]['search'].join(',')
 
-  if $_debug_output {
-    $searchdomains_out = "used searchdomains: ${used_searchdomains}, has searchdomains: ${has_searchdomains}"
-    echo { 'NM searchdomains': message => $searchdomains_out, loglevel => notice }
-  }
+  # if $_debug_output {
+    $searchdomains_out = "Used searchdomains: ${used_searchdomains}, has searchdomains: ${has_searchdomains}"
+    echo { "NM searchdomains ${_connection}": message => $searchdomains_out, loglevel => notice }
+  # }
 
   unless $used_searchdomains == $has_searchdomains {
     exec { "update searchdomains nmcli connection ${_connection}":
@@ -106,10 +106,10 @@ define networkmanager::dns (
 
     $has_options = $facts['networkmanager_dns'][$_connection]['options'].join(',')
 
-    if $_debug_output {
-      $options_out = "used options: ${used_options}, has options: ${has_options}"
-      echo { 'NM searchdomains': message => $options_out, loglevel => notice }
-    }
+    # if $_debug_output {
+      $options_out = "Used options: ${used_options}, has options: ${has_options}"
+      echo { "NM options ${_connection}": message => $options_out, loglevel => notice }
+    # }
 
     unless $used_options == $has_options {
       exec { "update dns-options nmcli connection ${_connection}":
