@@ -41,7 +41,7 @@ define networkmanager::dns (
   Optional[Variant[Array[String[1]], String]] $dns_options   = undef,
   Optional[String[1]]                         $connection    = undef,
   Boolean                                     $notify_daemon = true,
-  Optional[Boolean]                           $debug_output  = false,
+  Optional[Boolean]                           $debug_output  = undef,
 ) {
   unless $facts['networkmanager_nmcli_path'] {
     fail("Did not found NetworkManager command line tool 'nmcli'.")
