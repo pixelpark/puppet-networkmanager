@@ -41,11 +41,13 @@ define networkmanager::dns (
   Optional[Variant[Array[String[1]], String]] $dns_options   = undef,
   Optional[String[1]]                         $connection    = undef,
   Boolean                                     $notify_daemon = true,
-  Boolean                                     $debug_output  = false,
+  Optional[Boolean]                           $debug_output  = false,
 ) {
   unless $facts['networkmanager_nmcli_path'] {
     fail("Did not found NetworkManager command line tool 'nmcli'.")
   }
+
+  $_debug_output = $debug_output ? { undef => $networkmanager::debug_output; default => $debug_output }
 
   $nmcli = $facts['networkmanager_nmcli_path']
 
@@ -62,7 +64,7 @@ define networkmanager::dns (
   $used_nameservers = $nameservers.join(',')
   $has_nameservers  = $facts['networkmanager_dns'][$_connection]['nameserver'].join(',')
 
-  if $debug_output {
+  if $_debug_output {
     $ns_out = "used nameservers: ${used_nameservers}, has nameservers: ${has_nameservers}"
     echo { 'NM nameservers': message => $ns_out, loglevel => notice }
   }
@@ -80,7 +82,7 @@ define networkmanager::dns (
   $used_searchdomains = $searchdomains.join(',')
   $has_searchdomains  = $facts['networkmanager_dns'][$_connection]['search'].join(',')
 
-  if $debug_output {
+  if $_debug_output {
     $searchdomains_out = "used searchdomains: ${used_searchdomains}, has searchdomains: ${has_searchdomains}"
     echo { 'NM searchdomains': message => $searchdomains_out, loglevel => notice }
   }
@@ -104,7 +106,7 @@ define networkmanager::dns (
 
     $has_options = $facts['networkmanager_dns'][$_connection]['options'].join(',')
 
-    if $debug_output {
+    if $_debug_output {
       $options_out = "used options: ${used_options}, has options: ${has_options}"
       echo { 'NM searchdomains': message => $options_out, loglevel => notice }
     }
