@@ -47,7 +47,7 @@ define networkmanager::dns (
     fail("Did not found NetworkManager command line tool 'nmcli'.")
   }
 
-  $_debug_output = $debug_output ? { undef => $networkmanager::debug_output; default => $debug_output }
+  $_debug_output = $debug_output ? { undef => $networkmanager::debug_output, default => $debug_output }
 
   $nmcli = $facts['networkmanager_nmcli_path']
 
