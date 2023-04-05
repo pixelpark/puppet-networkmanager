@@ -122,6 +122,9 @@
 #   A hash for creating networkmanager::dns resources for managing DNS options on different NetworkManager
 #   connections. Be sure not to include the primary NetworkManager connection, if manage_dns is true.
 #
+# @param debug_output
+#   A flag to emit debug information during the puppet agent run
+#
 class networkmanager (
   Boolean                                     $enable_global_dns,
   Array[Stdlib::IP::Address::Nosubnet]        $global_nameservers,
@@ -139,6 +142,7 @@ class networkmanager (
   Optional[String[1]]                         $restart_service,
   Boolean                                     $dns_notify_daemon     = true,
   Optional[Hash]                              $connection_dnsoptions = undef,
+  Boolean                                     $debug_output          = false,
 ) {
   unless $facts['networkmanager_nmcli_path'] {
     fail("Did not found NetworkManager command line tool 'nmcli'.")

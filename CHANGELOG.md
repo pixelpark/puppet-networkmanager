@@ -2,15 +2,27 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release [v0.0.7](https://github.com/pixelpark/puppet-networkmanager/tree/v0.0.7) (2023-04-05)
+
+[Full Changelog](https://github.com/pixelpark/puppet-networkmanager/compare/v0.0.6...v0.0.7)
+
+### Fixes
+
+ * Making nameservers, search domains and options unique
+
+### Features
+
+ * Adding optional debug output
+
 ## Release [v0.0.6](https://github.com/pixelpark/puppet-networkmanager/tree/v0.0.6) (2022-09-14)
 
 [Full Changelog](https://github.com/pixelpark/puppet-networkmanager/compare/v0.0.5...v0.0.6)
 
-## Fixes
+### Fixes
 
  * Fix escaping of connection name inside facts exec
  
-## Closes
+### Closes
 
  * #6
 
@@ -18,7 +30,7 @@ All notable changes to this project will be documented in this file.
 
 [Full Changelog](https://github.com/pixelpark/puppet-networkmanager/compare/v0.0.4...v0.0.5)
 
-## Fixes
+### Fixes
 
  * Fix wrong varibale name in common.yaml
  * Fix puppet string errors
@@ -27,7 +39,7 @@ All notable changes to this project will be documented in this file.
 
 [Full Changelog](https://github.com/pixelpark/puppet-networkmanager/compare/v0.0.3...v0.0.4)
 
-## Changes
+### Changes
 
  * add github actions
  * fix spec tests
@@ -38,32 +50,32 @@ All notable changes to this project will be documented in this file.
 
 [Full Changelog](https://github.com/pixelpark/puppet-networkmanager/compare/v0.0.2...v0.0.3)
 
-## Features
+### Features
 
 * Initial Release
 
-## Bugfixes
+### Bugfixes
 
 * Escaping connection names on calling nmcli
 * Reduce code complexity
 * New `lib/puppet_x/pixelpark/nm-which.rb` for common used function `which`.
 * Style fixes
 
-## Known Issues
+### Known Issues
 
 None.
 
 ## Release [v0.0.2](https://github.com/pixelpark/puppet-networkmanager/tree/v0.0.2) (2021-03-29)
 
-## Features
+### Features
 
 * Initial Release
 
-## Bugfixes
+### Bugfixes
 
 None.
 
-## Known Issues
+### Known Issues
 
 None.
 
