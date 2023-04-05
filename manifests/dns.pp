@@ -32,12 +32,16 @@
 #   this option should be set to false to prevent a Ping-Pong game between those two modules. In this
 #   case this resource is only intended to ensure a correct /etc/resolv.conf immediately after a reboot.
 #
+# @param debug_output
+#   A flag to emit debug information during the puppet agent run
+#
 define networkmanager::dns (
   Array[Stdlib::IP::Address::Nosubnet, 1]     $nameservers,
   Array[String[1], 1]                         $searchdomains,
   Optional[Variant[Array[String[1]], String]] $dns_options   = undef,
   Optional[String[1]]                         $connection    = undef,
   Boolean                                     $notify_daemon = true,
+  Boolean                                     $debug_output  = false,
 ) {
   unless $facts['networkmanager_nmcli_path'] {
     fail("Did not found NetworkManager command line tool 'nmcli'.")
@@ -58,6 +62,11 @@ define networkmanager::dns (
   $used_nameservers = $nameservers.join(',')
   $has_nameservers  = $facts['networkmanager_dns'][$_connection]['nameserver'].join(',')
 
+  if $debug_output {
+    $ns_out = "used nameservers: ${used_nameservers}, has nameservers: ${has_nameservers}"
+    echo { 'NM nameservers': message => $ns_out, loglevel => notice }
+  }
+
   unless $used_nameservers == $has_nameservers {
     exec { "update nameserver nmcli connection ${_connection}":
       command => "${nmcli} connection modify \"${_connection}\" ipv4.dns ${used_nameservers}",
@@ -70,6 +79,11 @@ define networkmanager::dns (
 
   $used_searchdomains = $searchdomains.join(',')
   $has_searchdomains  = $facts['networkmanager_dns'][$_connection]['search'].join(',')
+
+  if $debug_output {
+    $searchdomains_out = "used searchdomains: ${used_searchdomains}, has searchdomains: ${has_searchdomains}"
+    echo { 'NM searchdomains': message => $searchdomains_out, loglevel => notice }
+  }
 
   unless $used_searchdomains == $has_searchdomains {
     exec { "update searchdomains nmcli connection ${_connection}":
@@ -89,6 +103,12 @@ define networkmanager::dns (
     }
 
     $has_options = $facts['networkmanager_dns'][$_connection]['options'].join(',')
+
+    if $debug_output {
+      $options_out = "used options: ${used_options}, has options: ${has_options}"
+      echo { 'NM searchdomains': message => $options_out, loglevel => notice }
+    }
+
     unless $used_options == $has_options {
       exec { "update dns-options nmcli connection ${_connection}":
         command => "${nmcli} connection modify \"${_connection}\" ipv4.dns-options '${used_options}'",
