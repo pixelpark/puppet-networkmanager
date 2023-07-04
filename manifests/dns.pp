@@ -98,10 +98,10 @@ define networkmanager::dns (
   }
 
   unless $dns_options == undef {
-    if is_array($dns_options) {
-      $used_options = $dns_options.unique.join(',')
+    $used_options = if $dns_options =~ Array {
+      $dns_options.unique.join(',')
     } else {
-      $used_options = $dns_options
+      $dns_options
     }
 
     $has_options = $facts['networkmanager_dns'][$_connection]['options'].join(',')
