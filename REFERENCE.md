@@ -16,7 +16,7 @@
 
 ### Defined types
 
-* [`networkmanager::dns`](#networkmanagerdns): Manages the DNS informations about a particular NetworkManager connection
+* [`networkmanager::dns`](#networkmanager--dns): Manages the DNS informations about a particular NetworkManager connection
 
 ## Classes
 
@@ -49,7 +49,7 @@ class {'networkmanager':
       wifi1               => {
         nameservers       => ['172.28.1.2', '172.30.1.2'],
         searchdomains     => ['home.example.com'],
-        dns_options       => ['timeout:3, 'attempts:3', 'use-vc'],
+        dns_options       => ['timeout:3', 'attempts:3', 'use-vc'],
         notify_daemon     => true,
       },
     },
@@ -58,7 +58,7 @@ class {'networkmanager':
 
 ##### using hieradata
 
-```yaml
+```puppet
 ---
 networkmanager::enable_global_dns: false
 networkmanager::manage_dns: true
@@ -96,25 +96,25 @@ networkmanager::connection_dnsoptions:
 
 The following parameters are available in the `networkmanager` class:
 
-* [`enable_global_dns`](#enable_global_dns)
-* [`global_nameservers`](#global_nameservers)
-* [`global_searchdomains`](#global_searchdomains)
-* [`global_dns_options`](#global_dns_options)
-* [`global_conffile`](#global_conffile)
-* [`manage_dns`](#manage_dns)
-* [`nameservers`](#nameservers)
-* [`dns_searchdomains`](#dns_searchdomains)
-* [`dns_options`](#dns_options)
-* [`manage_service`](#manage_service)
-* [`service_ensure`](#service_ensure)
-* [`service_name`](#service_name)
-* [`enable_service`](#enable_service)
-* [`restart_service`](#restart_service)
-* [`dns_notify_daemon`](#dns_notify_daemon)
-* [`connection_dnsoptions`](#connection_dnsoptions)
-* [`ensure_service`](#ensure_service)
+* [`enable_global_dns`](#-networkmanager--enable_global_dns)
+* [`global_nameservers`](#-networkmanager--global_nameservers)
+* [`global_searchdomains`](#-networkmanager--global_searchdomains)
+* [`global_dns_options`](#-networkmanager--global_dns_options)
+* [`global_conffile`](#-networkmanager--global_conffile)
+* [`manage_dns`](#-networkmanager--manage_dns)
+* [`nameservers`](#-networkmanager--nameservers)
+* [`dns_searchdomains`](#-networkmanager--dns_searchdomains)
+* [`dns_options`](#-networkmanager--dns_options)
+* [`manage_service`](#-networkmanager--manage_service)
+* [`ensure_service`](#-networkmanager--ensure_service)
+* [`service_name`](#-networkmanager--service_name)
+* [`enable_service`](#-networkmanager--enable_service)
+* [`restart_service`](#-networkmanager--restart_service)
+* [`dns_notify_daemon`](#-networkmanager--dns_notify_daemon)
+* [`connection_dnsoptions`](#-networkmanager--connection_dnsoptions)
+* [`debug_output`](#-networkmanager--debug_output)
 
-##### <a name="enable_global_dns"></a>`enable_global_dns`
+##### <a name="-networkmanager--enable_global_dns"></a>`enable_global_dns`
 
 Data type: `Boolean`
 
@@ -122,52 +122,52 @@ By enabling this, NetworkManager will not use the connections specific dns setti
 Instead it will generate a file with the desired dns settings.
 Those parameters are then the default, even if connection specific settings are present.
 
-##### <a name="global_nameservers"></a>`global_nameservers`
+##### <a name="-networkmanager--global_nameservers"></a>`global_nameservers`
 
 Data type: `Array[Stdlib::IP::Address::Nosubnet]`
 
 An array of the IP addresses for the nameservers for the global setting.
 
-##### <a name="global_searchdomains"></a>`global_searchdomains`
+##### <a name="-networkmanager--global_searchdomains"></a>`global_searchdomains`
 
 Data type: `Array[String[1]]`
 
 An array of DNS search domains for the global setting.
 
-##### <a name="global_dns_options"></a>`global_dns_options`
+##### <a name="-networkmanager--global_dns_options"></a>`global_dns_options`
 
 Data type: `Optional[Variant[Array[String[1]], String]]`
 
 A string or an array of strings with resolving options for the global setting.
 If omitted, no global resolving optios are set.
 
-##### <a name="global_conffile"></a>`global_conffile`
+##### <a name="-networkmanager--global_conffile"></a>`global_conffile`
 
 Data type: `Optional[Stdlib::Absolutepath]`
 
 The config file for global dns settings. Should be under /etc/NetworkManager/conf.d
 
-##### <a name="manage_dns"></a>`manage_dns`
+##### <a name="-networkmanager--manage_dns"></a>`manage_dns`
 
 Data type: `Boolean`
 
 Whether we want to manage dns of the primary NetworkManager connection.
 
-##### <a name="nameservers"></a>`nameservers`
+##### <a name="-networkmanager--nameservers"></a>`nameservers`
 
 Data type: `Array[Stdlib::IP::Address::Nosubnet]`
 
 An array of the IP addresses of the resolvers to use for the primary NetworkManager connection.
 At least one address has to be given, but if exactly one address is given, a warning will be omitted.
 
-##### <a name="dns_searchdomains"></a>`dns_searchdomains`
+##### <a name="-networkmanager--dns_searchdomains"></a>`dns_searchdomains`
 
 Data type: `Array[String[1], 1]`
 
 An array of DNS search domains to use for the primary NetworkManager connection.
 At least one domain has to be given.
 
-##### <a name="dns_options"></a>`dns_options`
+##### <a name="-networkmanager--dns_options"></a>`dns_options`
 
 Data type: `Optional[Variant[Array[String[1]], String]]`
 
@@ -176,35 +176,37 @@ Please note not to use whitespaces inside the strings, only use comma to separat
 a string. If not given (or undef), the options are not managed.
 To remove existing options use an empty string '' as a value.
 
-##### <a name="manage_service"></a>`manage_service`
+##### <a name="-networkmanager--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
 Whether we want to manage the NetworkManager service.
 
-##### <a name="service_ensure"></a>`service_ensure`
+##### <a name="-networkmanager--ensure_service"></a>`ensure_service`
+
+Data type: `Optional[Variant[Boolean, String[1]]]`
 
 Whether a service should be running. Valid values are 'stopped', 'running', true, false.
 
-##### <a name="service_name"></a>`service_name`
+##### <a name="-networkmanager--service_name"></a>`service_name`
 
 Data type: `String[1]`
 
 The systemd service name of NetworkManager, usually 'NetworkManager'.
 
-##### <a name="enable_service"></a>`enable_service`
+##### <a name="-networkmanager--enable_service"></a>`enable_service`
 
 Data type: `Boolean`
 
 Whether a service should be enabled to start at boot.
 
-##### <a name="restart_service"></a>`restart_service`
+##### <a name="-networkmanager--restart_service"></a>`restart_service`
 
 Data type: `Optional[String[1]]`
 
 Specify a restart command manually. If left unspecified, the service will be stopped and then started.
 
-##### <a name="dns_notify_daemon"></a>`dns_notify_daemon`
+##### <a name="-networkmanager--dns_notify_daemon"></a>`dns_notify_daemon`
 
 Data type: `Boolean`
 
@@ -215,26 +217,28 @@ NetworkManager connections. In case of a notification the NetworkManager daemon 
 this option should be set to false to prevent a Ping-Pong game between those two modules. In this
 case manage_dns is only intended to ensure a correct /etc/resolv.conf immediately after a reboot.
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="connection_dnsoptions"></a>`connection_dnsoptions`
+##### <a name="-networkmanager--connection_dnsoptions"></a>`connection_dnsoptions`
 
 Data type: `Optional[Hash]`
 
 A hash for creating networkmanager::dns resources for managing DNS options on different NetworkManager
 connections. Be sure not to include the primary NetworkManager connection, if manage_dns is true.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="ensure_service"></a>`ensure_service`
+##### <a name="-networkmanager--debug_output"></a>`debug_output`
 
-Data type: `Optional[Variant[Boolean, String[1]]]`
+Data type: `Boolean`
 
+A flag to emit debug information during the puppet agent run
 
+Default value: `false`
 
 ## Defined types
 
-### <a name="networkmanagerdns"></a>`networkmanager::dns`
+### <a name="networkmanager--dns"></a>`networkmanager::dns`
 
 Manages the DNS informations about a particular NetworkManager connection
 
@@ -255,26 +259,27 @@ networkmanager::dns { 'System link':
 
 The following parameters are available in the `networkmanager::dns` defined type:
 
-* [`nameservers`](#nameservers)
-* [`searchdomains`](#searchdomains)
-* [`dns_options`](#dns_options)
-* [`connection`](#connection)
-* [`notify_daemon`](#notify_daemon)
+* [`nameservers`](#-networkmanager--dns--nameservers)
+* [`searchdomains`](#-networkmanager--dns--searchdomains)
+* [`dns_options`](#-networkmanager--dns--dns_options)
+* [`connection`](#-networkmanager--dns--connection)
+* [`notify_daemon`](#-networkmanager--dns--notify_daemon)
+* [`debug_output`](#-networkmanager--dns--debug_output)
 
-##### <a name="nameservers"></a>`nameservers`
+##### <a name="-networkmanager--dns--nameservers"></a>`nameservers`
 
 Data type: `Array[Stdlib::IP::Address::Nosubnet, 1]`
 
 An array of the IP addresses of the resolvers to use. At least one address has to be given,
 but if exactly one address is given, a warning will be omitted.
 
-##### <a name="searchdomains"></a>`searchdomains`
+##### <a name="-networkmanager--dns--searchdomains"></a>`searchdomains`
 
 Data type: `Array[String[1], 1]`
 
 An array of DNS search domains. At least one domain has to be given.
 
-##### <a name="dns_options"></a>`dns_options`
+##### <a name="-networkmanager--dns--dns_options"></a>`dns_options`
 
 Data type: `Optional[Variant[Array[String[1]], String]]`
 
@@ -282,16 +287,18 @@ A string or an array of strings with resolving options. Please note not to use w
 inside the strings, only use comma to separate options inside a string. If not given (or undef),
 the options are not managed. To remove existing options use an empty string '' as a value.
 
-##### <a name="connection"></a>`connection`
+Default value: `undef`
+
+##### <a name="-networkmanager--dns--connection"></a>`connection`
 
 Data type: `Optional[String[1]]`
 
 The name of the NetworkManager connection. If not given, the name of the resource will be used
 as the name of the connection.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="notify_daemon"></a>`notify_daemon`
+##### <a name="-networkmanager--dns--notify_daemon"></a>`notify_daemon`
 
 Data type: `Boolean`
 
@@ -302,5 +309,13 @@ this resorce can be used to manage /etc/resolv.conf.
 this option should be set to false to prevent a Ping-Pong game between those two modules. In this
 case this resource is only intended to ensure a correct /etc/resolv.conf immediately after a reboot.
 
-Default value: ``true``
+Default value: `true`
+
+##### <a name="-networkmanager--dns--debug_output"></a>`debug_output`
+
+Data type: `Optional[Boolean]`
+
+A flag to emit debug information during the puppet agent run
+
+Default value: `undef`
 
