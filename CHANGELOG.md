@@ -2,17 +2,26 @@
 
 All notable changes to this project will be documented in this file.
 
+## Release [v0.0.8](https://github.com/pixelpark/puppet-networkmanager/tree/v0.0.8) (2023-08-21)
+
+[Full Changelog](https://github.com/pixelpark/puppet-networkmanager/compare/v0.0.7...v0.0.8)
+
+### Changes
+
+* Add Stdlib 9.x compatibility
+* Update REFERENCE.md
+
 ## Release [v0.0.7](https://github.com/pixelpark/puppet-networkmanager/tree/v0.0.7) (2023-04-05)
 
 [Full Changelog](https://github.com/pixelpark/puppet-networkmanager/compare/v0.0.6...v0.0.7)
 
 ### Fixes
 
- * Making nameservers, search domains and options unique
+* Making nameservers, search domains and options unique
 
 ### Features
 
- * Adding optional debug output
+* Adding optional debug output
 
 ## Release [v0.0.6](https://github.com/pixelpark/puppet-networkmanager/tree/v0.0.6) (2022-09-14)
 
@@ -20,11 +29,11 @@ All notable changes to this project will be documented in this file.
 
 ### Fixes
 
- * Fix escaping of connection name inside facts exec
- 
+* Fix escaping of connection name inside facts exec
+
 ### Closes
 
- * #6
+* #6
 
 ## Release [v0.0.5](https://github.com/pixelpark/puppet-networkmanager/tree/v0.0.5) (2022-08-15)
 
@@ -32,8 +41,8 @@ All notable changes to this project will be documented in this file.
 
 ### Fixes
 
- * Fix wrong varibale name in common.yaml
- * Fix puppet string errors
+* Fix wrong varibale name in common.yaml
+* Fix puppet string errors
 
 ## Release [v0.0.4](https://github.com/pixelpark/puppet-networkmanager/tree/v0.0.4) (2022-08-08)
 
@@ -41,10 +50,10 @@ All notable changes to this project will be documented in this file.
 
 ### Changes
 
- * add github actions
- * fix spec tests
- * modulesync 5.3.0
- * refactor facts
+* add github actions
+* fix spec tests
+* modulesync 5.3.0
+* refactor facts
 
 ## Release [v0.0.3](https://github.com/pixelpark/puppet-networkmanager/tree/v0.0.3) (2021-08-23)
 
@@ -78,4 +87,3 @@ None.
 ### Known Issues
 
 None.
-
