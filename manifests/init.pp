@@ -149,14 +149,10 @@ class networkmanager (
   }
 
   if $enable_global_dns {
-    if $global_dns_options {
-      if is_array($global_dns_options) {
-        $real_dns_options = join($global_dns_options, ',')
-      } else {
-        $real_dns_options = $global_dns_options
-      }
-    } else {
-      $real_dns_options = undef
+    $real_dns_options = $global_dns_options ? {
+      Array   => $global_dns_options.join(','),
+      String  => $global_dns_options,
+      default => undef,
     }
 
     file { $global_conffile:
